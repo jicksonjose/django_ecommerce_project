@@ -13,7 +13,7 @@
 					<div id="user-info ">
 						<div class="form-field ">
 							<label><strong>Name</strong></label>
-							<input required class="form-control" type="text" name="name" value="{{user.fname}}&nbsp;{{user.lname}}" placeholder="Name.."
+							<input required class="form-control" type="text" name="name" readonly value="{{user.fname}}&nbsp;{{user.lname}}" placeholder="Name.."
 							onkeypress="return allowOnlyLetters(event,this);">
 						</div>
 						<div class="form-field pt-3">
@@ -36,26 +36,26 @@
 
 						<div class="form-field pt-3">
 									<p>Phone</p>
-							<input class="form-control" type="text" name="Contact" value=""
+							<input class="form-control" type="text" name="Contact" value="{{user.phone}}"
 								   minlength="10" name="phone"
                  			maxlength="10" onkeypress="return isNumberKey(event,this)"placeholder="" id="numberInput"  onblur="validateNumber()"  required>
 						</div>
 
 						<div class="form-field pt-3">
 									<p>State</p>
-							<input class="form-control" type="text" name="state" value="" placeholder="state" required onkeypress="return allowOnlyLetters(event,this);" >
+							<input class="form-control" type="text" name="state" value="" placeholder="State"required onkeypress="return allowOnlyLetters(event,this);">
 						</div>
 
 						<div class="form-field pt-3">
 							<p>Pin</p>
 							<input class="form-control" type="text" name="pin" value="" onblur="validatePin()"  id="PinNumber"
-								  onkeypress="return isNumberKey(event,this)" minlength="6" maxlength="6"  placeholder="Pin code.." required>
+								  onkeypress="return isNumberKey(event,this)" minlength="6" maxlength="6"  placeholder="Pin code.."required>
 						</div>
 
 						<input type="hidden" name="total" value="{{cart.total}}">
 					</div>
 				</div>
-				<input class="mt-4" type="submit" value="Next Page">
+<input class="mt-4" type="submit" value="Next Page">
 			</div>
 
 		</div>
