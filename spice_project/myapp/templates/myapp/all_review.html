@@ -1,0 +1,190 @@
+{%extends 'myapp/user_base.html'%}
+{% load static %}
+{% block body %}
+
+
+<!-- ======= Services Section ======= -->
+<section id="services" class="services section-bg">
+<div class="container" data-aos="fade-up">
+    <div class="row pl-2">
+
+
+        <!-- image col-->
+          {% for x in items %}
+               <div class=" container col-md-3 mt-5 ml-2">
+                   <img  src="../static/myapp/media/{{ x.item_pic }}" height="300px" width="300px" alt="Card image cap"></a>
+               </div>
+          {% endfor %}
+
+        <!--  price details-->
+          {% for x in items %}
+          <div class="col-md-3 mt-5" data-aos="fade-up" data-aos-delay="100" style="border-right:1px solid black;" >
+
+                <div class="col">
+                    <a style="color:black;" href="user_product_page?id={{ x.id }}&cat_id={{ x.category.id }}">
+                        <h5 class="pt-5" style="font-size:30px;text-transform: capitalize;font-weight:400">{{ x.item_name }}</h5></a>
+                        <p style="font-size:12px;text-transform: uppercase;">Category : {{ x.category }}</p>
+                     {% if x.opng_stock == 0 %}
+                        <p style="color:red;font-size:10px;"  >Out of Stock </p>
+                      {% else %}
+                        <p style="color:green;font-size:10px;">In Stock</p>
+                      {% endif %}
+                    <br>
+                    <s>&#8377; {{ x.item_rate }}</s><p style="font-weight:400;font-size:30px;color:black;">&#8377; {{ x.item_rate }}</p>
+
+<!--                stock condition    -->
+                {% if x.opng_stock > 0  %}
+	            <a href="/addtocart?id={{x.id}}&cat_id={{ x.category.id }}">
+                <!-- <input type="hidden" name="id" value="{{ x.id }}">-->
+				<button data-product="{{i.id}}" data-action="add"   class="btn btn-warning add-btn update-cart">
+                    Add to Cart &nbsp;<i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+				</a>
+                {% else %}
+                   <p style="color:white;font-size:20px;" class="btn btn-danger">Out of Stock...! </p>
+                {% endif %}
+<!--                stock condition  finish   -->
+
+                <!--msg 'added to cart succesfully'-->
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }} mt-1" role="alert" style="width: 208px;
+                                                                                        font-size: 10px;
+                                                                                        height: 33px;
+                                                                                        padding: 8px 4px 5px 21px;"
+                                                                                        >
+                        <p> {{ message }}
+                        <i class="fa fa-check" aria-hidden="true" style="font-size:10px;"></i></p>
+
+                    </div>
+                {% endfor %}
+                <!--///////-->
+                </div>
+
+          </div>
+
+
+          <div class="col-md-6">
+              <p class="pt-3" style="font-weight:bold;">Discription</p>
+              <p style=" text-align: justify;"> {{ x.item_description }}
+              </p>
+          </div>
+         {% endfor %}
+
+
+    </div>
+    <!--row/-->
+
+    <!--Review div-->
+    <div class="container mt-5">
+        <div class="row">
+<!--            review col-->
+            <div class="col-md-6">
+                <p style="font-weight:bold;">All Ratings & Reviews</p>
+                {% for x in review %}
+                 <p style="text-transform:capitalize;font-weight:600;">
+                     <i class="fa fa-user-circle" style="coloR:grey;" aria-hidden="true"></i>
+                     &nbsp;{{ x.user }}</p>
+
+                <!--star rating condition-->
+                {% if x.rate > 0 %}
+                  <i class="fa fa-star {% if x.rate < 1 %} no-checked {% else %} checked {% endif %} " id="check-star"></i>
+                  <i class="fa fa-star {% if x.rate < 2 %} no-checked {% else %} checked {% endif %} " id="check-star"></i>
+                  <i class="fa fa-star {% if x.rate < 3 %} no-checked {% else %} checked {% endif %} " id="check-star"></i>
+                  <i class="fa fa-star {% if x.rate < 4 %} no-checked {% else %} checked {% endif %} " id="check-star"></i>
+                  <i class="fa fa-star {% if x.rate < 5 %} no-checked {% else %} checked {% endif %} " id="check-star"></i>
+                  {% else %}
+                 <i class="fa fa-star" id="star"></i>
+                 <i class="fa fa-star" id="star"></i>
+                 <i class="fa fa-star" id="star"></i>
+                 <i class="fa fa-star" id="star"></i>
+                 <i class="fa fa-star" id="star"></i>&nbsp;<span>No ratings</span>
+                {% endif %}
+                <!--star rating condition-->
+
+                <p class="ml-2 mt-1" style="font-size:15px;">Review : {{ x.review_desp }} </p>
+
+                <hr>
+                {% endfor %}
+            </div>
+<!--            review col-->
+<!---->
+
+        </div>
+    </div>
+<!--    container-->
+ </div>
+
+</section>
+
+<style>
+.checked {
+  color: orange;
+}
+
+#review-text{
+
+border-radius:8px;
+border:none;
+padding-top:3px;
+
+}
+
+#star{
+font-size: 10px;
+color:grey;
+}
+
+/////////////////////
+.rating {
+  margin-top: 40px;
+  border: none;
+  float: left;
+
+}
+
+.rating > label {
+   color: #9C9C9C;
+  font-size: 7px;
+  float:right;
+}
+
+
+.rating > label:before {
+  margin: 5px;
+  font-size: 2em;
+  font-family: FontAwesome;
+  content: "\f005";
+  display: inline-block;
+}
+
+.rating > input {
+  display: none;
+}
+
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: #F79426;
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label,
+.rating > input:checked ~ label:hover ~ label {
+  color: #FECE31;
+}
+
+
+#star{
+font-size: 10px;
+color:grey;
+}
+
+#check-star{
+font-size: 10px;
+}
+
+
+</style>
+
+
+{% endblock %}

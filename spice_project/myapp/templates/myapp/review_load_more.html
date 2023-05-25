@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="my-data">
+  {% for obj in queryset %}
+    <div>{{ obj.review_desp }}</div>
+  {% endfor %}
+</div>
+
+<script>
+  $(window).on('scroll', function() {
+    if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+      var numDisplayed = $('#my-data > div').length;
+      $.ajax({
+        url: '{% url "my-view" %}',
+        data: {num_displayed: numDisplayed},
+        success: function(data) {
+          $.each(data.data, function(i, obj) {
+            $('#my-data').append($('<div>').text(obj));
+          });
+          if (!data.has_next) {
+            $(window).off('scroll');
+          }
+        }
+      });
+    }
+  });
+</script>
+
+</body>
+</html>

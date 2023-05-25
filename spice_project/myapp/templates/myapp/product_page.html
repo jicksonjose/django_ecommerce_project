@@ -1,0 +1,327 @@
+{%extends 'myapp/base.html'%}
+{% load static %}
+{% block body %}
+
+
+<!-- ======= Services Section ======= -->
+<section id="services" class="services section-bg">
+<div class="container" data-aos="fade-up">
+    <div class="row pl-2">
+
+
+        <!-- image col-->
+          {% for x in items %}
+               <div class=" container col-md-3 mt-5 ml-2">
+                   <img  src="../static/myapp/media/{{ x.item_pic }}" height="300px" width="300px" alt="Card image cap">
+
+<!--                   <i class="fa fa-share-alt" aria-hidden="true"></i>-->
+
+               </div>
+          {% endfor %}
+
+
+        <!--  price details-->
+          {% for x in items %}
+          <div class="col-md-3 mt-3" data-aos="fade-up" data-aos-delay="100" style="border-right:1px solid black;" >
+
+                <div class="col">
+                    <a style="color:black;" href="product_page?id={{ x.id }}&cat_id={{ x.category.id }}">
+                        <h5 class="pt-5" style="font-size:30px;text-transform: capitalize;font-weight:400">{{ x.item_name }}</h5></a>
+                        <p style="font-size:12px;text-transform: uppercase;">Category : {{ x.category }}</p>
+
+                      {% if x.opng_stock == 0 %}
+                        <p style="color:red;font-size:10px;">Out of Stock </p>
+                      {% else %}
+                        <p style="color:green;font-size:10px;">In Stock</p>
+                      {% endif %}
+                    <!--rating average-->
+<!--                 <p>{{round_num}}</p>-->
+                      {% if round_num > 0 %}
+                      <i class="fa fa-star {% if round_num < 1 %} no-checked {% else %} checked {% endif %} " id="check-star"></i>
+                      <i class="fa fa-star {% if round_num < 2 %} no-checked {% else %} checked {% endif %} " id="check-star"></i>
+                      <i class="fa fa-star {% if round_num < 3 %} no-checked {% else %} checked {% endif %} " id="check-star"></i>
+                      <i class="fa fa-star {% if round_num < 4 %} no-checked {% else %} checked {% endif %} " id="check-star"></i>
+                      <i class="fa fa-star {% if round_num < 5 %} no-checked {% else %} checked {% endif %} " id="check-star"></i>
+                    &nbsp;&nbsp;{{ round_num }}
+                      {% else %}
+                     <i class="fa fa-star" id="star"></i>
+                     <i class="fa fa-star" id="star"></i>
+                     <i class="fa fa-star" id="star"></i>
+                     <i class="fa fa-star" id="star"></i>
+                     <i class="fa fa-star" id="star"></i>&nbsp;
+                    {% endif %}
+                    <br>
+                    <!--//-->
+                    <s>&#8377; {{ x.original_rate }}</s>
+                    <p style="font-weight:400;font-size:30px;color:black;">&#8377; {{ x.item_rate }}</p>
+                </div>
+
+              <!--add to cart button-->
+                {% if x.opng_stock > 0  %}
+	            <a href="login">
+                <!-- <input type="hidden" name="id" value="{{ x.id }}">-->
+				<button data-product="{{i.id}}" data-action="add"   class="btn btn-warning add-btn update-cart">
+                    Add to Cart &nbsp;<i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+				</a>
+                {% else %}
+                   <p style="color:white;font-size:20px;" class="btn btn-danger">Out of Stock...! </p>
+                {% endif %}
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               <a href="login" class="mt-3">
+                    <i style="color: #d0d0d0;" class="fa fa-heart-o" id="love" aria-hidden="true"> </i>
+               </a>
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <i class="fa fa-share-square-o" aria-hidden="true"></i>
+
+              <!--//////add to cart button-->
+
+                <!--msg 'added to cart succesfully'-->
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }} mt-1" role="alert" style="width: 208px;
+                                                                                        font-size: 10px;
+                                                                                        height: 33px;
+                                                                                        padding: 8px 4px 5px 21px;"
+                                                                                        >
+                        <p> {{ message }}
+                        <i class="fa fa-check" aria-hidden="true" style="font-size:10px;"></i></p>
+
+                    </div>
+                {% endfor %}
+                <!--///////added to cart succesfully'-->
+
+          </div>
+
+            <!--items for loop end -->
+          <div class="col-md-6">
+              <p class="pt-3" style="font-weight:600;">Discription</p>
+              <p style=" text-align: justify;">{{ x.item_description}}</p>
+          </div>
+{% endfor %}
+
+    </div>
+    <!--row/-->
+
+    <!--Review div-->
+    <div class="container mt-5">
+        <div class="row">
+<!-- review col-->
+            <div class="col-md-6">
+                <p style="font-weight:600;">Ratings & Reviews&nbsp;({{ my_count }})</p>
+
+                {% for x in review %}
+                 <p style="text-transform:capitalize;font-weight:600;">
+                     <i class="fa fa-user-circle" style="coloR:grey;" aria-hidden="true"></i>
+                     &nbsp;{{ x.user }}</p>
+
+                  <!--star rating condition-->
+                {% if x.rate > 0 %}
+                  <i class="fa fa-star {% if x.rate < 1 %} no-checked {% else %} checked {% endif %} " id="check-star"></i>
+                  <i class="fa fa-star {% if x.rate < 2 %} no-checked {% else %} checked {% endif %} " id="check-star"></i>
+                  <i class="fa fa-star {% if x.rate < 3 %} no-checked {% else %} checked {% endif %} " id="check-star"></i>
+                  <i class="fa fa-star {% if x.rate < 4 %} no-checked {% else %} checked {% endif %} " id="check-star"></i>
+                  <i class="fa fa-star {% if x.rate < 5 %} no-checked {% else %} checked {% endif %} " id="check-star"></i>
+                  {% else %}
+                 <i class="fa fa-star" id="star"></i>
+                 <i class="fa fa-star" id="star"></i>
+                 <i class="fa fa-star" id="star"></i>
+                 <i class="fa fa-star" id="star"></i>
+                 <i class="fa fa-star" id="star"></i>&nbsp;<span>No ratings</span>
+                {% endif %}
+                <!--star rating condition-->
+                <p class="ml-2 mt-1" style="font-size:15px;">Review : {{ x.review_desp }} </p>
+                <hr>
+                {% endfor %}
+
+                <!--See all review link -->
+                {% for x in items %}
+                <a style="color:#0d6efd;" href="login">See all reviews</a>
+                {% endfor %}
+                <!--///See all review link -->
+
+               </div>
+ <!-- review col-->
+
+<!--    write review col-->
+            <div class="col-md-6">
+                <p style="font-weight:600;">Write a review</p>
+                <a href="login">
+                <form method="Post">
+                    {% csrf_token %}
+                    <textarea name="review"  placeholder="Your review" rows="6" cols="50" id="review-text" required></textarea>
+                    <br>
+
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <div class="form-group required"></a>
+                      <div class="rating">
+                          <span style="font-weight:600;">Rating</span>
+                      <a href="login">
+                          <input type="radio" id="star5" name="rating" value="5" />
+                          <label class="star" for="star5" title="Awesome" aria-hidden="true"></label>
+                          <input type="radio" id="star4" name="rating" value="4" />
+                          <label class="star" for="star4" title="Great" aria-hidden="true"></label>
+                          <input type="radio" id="star3" name="rating" value="3" />
+                          <label class="star" for="star3" title="Very good" aria-hidden="true"></label>
+                          <input type="radio" id="star2" name="rating" value="2" />
+                          <label class="star" for="star2" title="Good" aria-hidden="true"></label>
+                          <input type="radio" id="star1" name="rating" value="1" />
+                          <label class="star" for="star1" title="Bad" aria-hidden="true"></label>
+
+                        </div>
+                    </div>
+
+                    </div>
+                          <input type="submit"  class="btn btn-primary mt-2" value="Post">
+<!-- col finish-->
+
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                </div>
+
+                </form>
+                </a>
+            </div>
+<!--    rate review col-->
+
+        </div>
+    </div>
+<!--    container-->
+ </div><!-- End Service Item -->
+
+</section>
+
+
+
+
+<!--recommended -->
+<div class="container mt-5 " >
+    <h4>Related products</h4>
+    <hr>
+      <div class="container mb-5" data-aos="fade-up">
+        <div class="row gy-4">
+
+<!--            item col-->
+          {%for x in related %}
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item  position-relative">
+
+              <div class="row">
+                <div class="col">
+              <a href="product_page?id={{ x.id }}&cat_id={{ x.category.id }}">
+                  <img  src="../static/myapp/media/{{ x.item_pic }}" height="150px" width="150px" alt="Card image cap"></a>
+                </div>
+                 <div class="col">
+                    <a style="color:black;v  " href="product_page?id={{ x.id }}&cat_id={{ x.category.id }}">
+
+                        <p  style="text-transform: capitalize;font-weight:600;">{{ x.item_name }} <br>
+                            <span style="font-size:10px;">100gm</span></p></a>
+              <br>
+
+                    <s style="font-size:12px;">&#8377; {{ x.item_rate }}</s>
+                    <p style="font-weight:600;font-size:16px;">&#8377; {{ x.item_rate }}</p>
+                     <a href="login">
+                    <i style="margin: 0 0 0 147px;color: #d0d0d0;" class="fa fa-heart-o" id="love" aria-hidden="true"> </i>
+                    </a>
+<!--                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>-->
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          {% endfor %}
+<!--            /item col-->
+
+        </div>
+
+    </div>
+</div>
+<script>
+function myFunction() {
+  var txt;
+  if (confirm("Press a button!")) {
+    txt = "You pressed OK!";
+  } else {
+    txt = "You pressed Cancel!";
+  }
+  document.getElementById("demo").innerHTML = txt;
+}
+</script>
+
+
+<style>
+.checked {
+  color: orange;
+}
+
+#review-text{
+
+border-radius:8px;
+border:none;
+padding-top:3px;
+
+}
+/////////////////////
+.rating {
+  margin-top: 40px;
+  border: none;
+  float: left;
+
+}
+
+.rating > label {
+   color: #9C9C9C;
+  font-size: 7px;
+  float:right;
+}
+
+
+.rating > label:before {
+  margin: 5px;
+  font-size: 2em;
+  font-family: FontAwesome;
+  content: "\f005";
+  display: inline-block;
+}
+
+.rating > input {
+  display: none;
+}
+
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: #F79426;
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label,
+.rating > input:checked ~ label:hover ~ label {
+  color: #FECE31;
+}
+
+
+#star{
+font-size: 10px;
+color:grey;
+}
+
+#check-star{
+font-size: 10px;
+}
+
+
+
+</style>
+
+
+{% endblock %}
+
+
+
+

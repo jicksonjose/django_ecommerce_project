@@ -1,0 +1,42 @@
+{% extends 'myapp/user_base.html' %}
+{% load static %}
+{% block body %}
+
+<section id="services" class="services section-bg">
+<div class="container ">
+    <h3 class="text-center">Wishlist</h3>
+    <hr>
+
+    <div class="row ">
+        {% for x in wishlist_obj %}
+         <div class="col-lg-4 col-md-6"  data-aos-delay="100">
+            <div class="service-item  position-relative">
+
+              <div class="row">
+                <div class="col">
+
+              <a href="">
+                  <img  src="../static/myapp/media/{{ x.item_pic }}" height="125px" width="125px" alt="Card image cap"></a>
+                </div>
+                <div class="col">
+                    <a style="color:black;v  " href="">
+
+                    <p  style="text-transform: capitalize;font-weight:600;">{{ x.item }} <br>
+                    <span style="font-size:10px;">100gm</span></p></a>
+                    <br>
+                    <s style="font-size:12px;">&#8377; {{ x.rate }}</s>
+                    <p style="font-weight:600;font-size:16px;">&#8377; {{ x.rate }}</p>
+                    <a href="add_to_wishlist?id={{ x.id }}">
+                        <a href="delete_wishlist?id={{ x.id }}">
+                    <i style="margin: 0 0 0 147px;color: #d0d0d0;" class="fa fa-trash-o" id="love" aria-hidden="true"></i>
+                    </a>
+                </div>
+              </div>
+            </div>
+          </div><!-- End  Item -->
+        {% endfor %}
+
+    </div>
+</div>
+</section>
+{% endblock %}

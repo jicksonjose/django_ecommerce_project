@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+    <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>J J Spices</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+
+<!--  jquery for autocomplete-->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{%static './myapp/template_base/assets/vendor/bootstrap/css/bootstrap.min.css '%}" rel="stylesheet">
+  <link href="{%static './myapp/template_base/assets/vendor/bootstrap-icons/bootstrap-icons.css'%}" rel="stylesheet">
+  <link href="{%static './myapp/template_base/assets/vendor/fontawesome-free/css/all.min.css'%}" rel="stylesheet">
+  <link href="{%static './myapp/template_base/assets/vendor/aos/aos.css'%}" rel="stylesheet">
+  <link href="{%static './myapp/template_base/assets/vendor/glightbox/css/glightbox.min.css'%}" rel="stylesheet">
+  <link href="{%static './myapp/template_base/assets/vendor/swiper/swiper-bundle.min.css'%}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{%static './myapp/template_base/assets/css/main.css'%}" rel="stylesheet">
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+
+  <style>
+
+
+<style media="screen">
+
+.container {
+    margin-top: 0px;
+    margin-bottom: 0px
+}
+
+.card {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.10rem
+}
+
+.card-header:first-child {
+    border-radius: calc(0.37rem - 1px) calc(0.37rem - 1px) 0 0
+}
+
+.card-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+}
+
+.track {
+    position: relative;
+    background-color: #ddd;
+    height: 7px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 60px;
+    margin-top: 50px
+}
+
+.track .step {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    width: 25%;
+    margin-top: -18px;
+    text-align: center;
+    position: relative
+}
+
+.track .stepcancel {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    width: 25%;
+    margin-top: -18px;
+    text-align: center;
+    position: relative;
+    background:red;
+    height: 5px;
+}
+
+.track .step.active:before {
+    background:rgb(7, 181, 7);
+}
+
+.track .step::before {
+    height: 7px;
+    position: absolute;
+    content: "";
+    width: 100%;
+    left: 0;
+    top: 18px
+}
+
+.track .step.active .icon {
+    background: #127300;
+    color: #fff
+}
+
+.track .step.cancel .cancel_icon {
+    color: red;
+}
+
+.track .icon {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+    border-radius: 100%;
+    background: #ddd
+    padding: 0 0 0 11px;
+}
+
+.track .step.active .text {
+    font-weight: 400;
+    color: #000
+}
+
+.track .text {
+    display: block;
+    margin-top: 7px
+}
+
+.itemside {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%
+}
+
+.itemside .aside {
+    position: relative;
+    -ms-flex-negative: 0;
+    flex-shrink: 0
+}
+
+.img-sm {
+    width: 80px;
+    height: 80px;
+    padding: 7px
+}
+
+ul.row,
+ul.row-sm {
+    list-style: none;
+    padding: 0
+}
+
+.itemside .info {
+    padding-left: 15px;
+    padding-right: 7px
+}
+
+.itemside .title {
+    display: block;
+    margin-bottom: 5px;
+    color: #212529
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1rem
+}
+
+.btn-warning {
+    color: #ffffff;
+    background-color: #ee5435;
+    border-color: #ee5435;
+    border-radius: 1px
+}
+
+.btn-warning:hover {
+    color: #ffffff;
+    background-color: #ff2b00;
+    border-color: #ff2b00;
+    border-radius: 1px
+}
+</style>
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+<header id="header" class="header d-flex align-items-center">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="/user_home" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+         <img src="{%static './myapp/template_base/assets/img/logo.png '%}" alt="logo">
+
+      </a>
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="/user_home" class="active">Home</a></li>
+          <li><a href="/about">About Us</a></li>
+          <li class="dropdown"><a href="#"><span>Product Category</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+            <ul>
+               {% for i in category_list %}
+              <li><a href="/category_item?cat_id={{ i.id }}" style="text-transform: capitalize;">{{  i.category_name  }}</a></li>
+
+              {% endfor %}
+            </ul>
+          </li>
+          <li><a href="/contact">Contact</a></li>
+          {% for x in uname %}
+          <li><a href="/user_profile?id={{ x.id }}">My Account</a></li>
+          {% endfor %}
+
+        </ul>
+        </div>
+      </nav><!-- .navbar -->
+    </div>
+
+
+  </header><!-- End Header -->
+<section id="hero" class="hero">
+    <div class="container m-5">
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-3">
+
+        </div>
+
+       </div>
+    </div>
+
+    <div class="container">
+    <div class="row mb-2">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+<!--            search bar-->
+
+<!--            search bar-->
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div>
+   </div>
+
+
+    <section id="services" class="services section-bg">
+<br>
+<div class="container">
+    <header class="card-header" style="text-align:center;font-weight:600;"> My Orders / Tracking </header>
+
+    {% for x in order_status %}
+
+    <article class="card">
+        <div class="card-body">
+            <ul class="row" style="margin-left:20px;margin-top:0px;">
+                <li class="col-md-4">
+                  <figure class="itemside mb-3">
+                      <div class="aside"></div>
+
+
+
+                      <p class=""><strong>Name : </strong> {{x.customer}} </p>
+                      <br>
+<!--                              <strong>Description : </strong></p> <span class=""><strong>-->
+                      <br>
+
+
+                    <br>
+                  </figure>
+                     <p>Price :{{x.total}} </p>
+                    <a href="invoice?id={{ x.id }}" ><button type="button" style="border-radius:4px;">Download Invoice</button></a>
+                </li>
+                <li class="col-md-4">
+                    <div class="col"> <strong>Shipment Address:</strong>
+                        <br>Address : {{x.address}}
+                        <br>State : {{ x.state }}
+                        <br>Pin :  {{ x.pin }}
+                    </div>
+                     <div class="col"> <strong>Date:</strong> <br> {{x.created_at }}</div>
+                </li>
+                <li class="col-md-4">
+<!--                    <div class="col"> <strong>Status:</strong> <br> {{x.order_status}} </div> <br>-->
+                    {% if x.order_status == 'order cancelled' %}
+                    <a href="cancel_order?id={{ x.id }}" style="color:red;">Order Cancelled</a>
+                    {% else %}
+                    <a href="cancel_order?id={{ x.id }}" class="btn btn-outline-secondary">Cancel Order</a>
+                    {% endif %}
+
+<!--                    <h4><a style="text-decoration:none;" href="" class="btn btn-outline-secondary" >-->
+<!--                        Download Invoice</a>-->
+                    </h4>
+                </li>
+
+            </ul>
+            <hr>
+
+            <div class="track">
+                {%if x.order_status == 'order processing' %}
+                <div class="step active"> <span class="icon"> <i style="padding-top:5px;" class="fa fa-frown-o"></i> </span> <span class="text">Order Processing</span> </div>
+                <div class="step  "> <span class="icon"> <i style="padding-top:5px;" class="fa fa-check"></i> </span> <span class="text"> Order Confirmed</span> </div>
+                <div class="step "> <span class="icon"> <i style="padding-top:5px;" class="fa fa-truck"></i> </span> <span class="text"> On the way </span> </div>
+                <div class="step "> <span class="icon"> <i style="padding-top:5px;" class="fa fa-home"></i> </span> <span class="text">Delivered</span> </div>
+                {%elif x.order_status == 'order confirmed' %}
+                <div class="step active"> <span class="icon"> <i style="padding-top:5px;" class="fa fa-frown-o"></i> </span> <span class="text">Order Processing</span> </div>
+                <div class="step active"> <span class="icon"> <i style="padding-top:5px;" class="fa fa-check"></i> </span> <span class="text"> Order Confirmed</span> </div>
+                <div class="step "> <span class="icon"> <i style="padding-top:5px;" class="fa fa-truck"></i> </span> <span class="text"> On the way </span> </div>
+                <div class="step "> <span class="icon"> <i style="padding-top:5px;" class="fa fa-home"></i> </span> <span class="text">Delivered</span> </div>
+                {%elif x.order_status == 'order on the way' %}
+                <div class="step active"> <span class="icon"> <i style="padding-top:5px;" class="fa fa-frown-o"></i> </span> <span class="text">Order Processing</span> </div>
+                <div class="step active"> <span class="icon"> <i style="padding-top:5px;" class="fa fa-check"></i> </span> <span class="text"> Order Confirmed</span> </div>
+                <div class="step active"> <span class="icon"> <i style="padding-top:5px;" class="fa fa-truck"></i> </span> <span class="text"> On the way </span> </div>
+                <div class="step "> <span class="icon"> <i style="padding-top:5px;" class="fa fa-home"></i> </span> <span class="text">Delivered</span> </div>
+                {%elif x.order_status == 'order received' %}
+                <div class="step active"> <span class="icon"> <i style="padding-top:5px;" class="fa fa-frown-o"></i> </span> <span class="text">Order Processing</span> </div>
+                <div class="step active"> <span class="icon"> <i style="padding-top:5px;" class="fa fa-check"></i> </span> <span class="text"> Order Confirmed</span> </div>
+                <div class="step active"> <span class="icon"> <i style="padding-top:5px;" class="fa fa-truck"></i> </span> <span class="text"> On the way </span> </div>
+                <div class="step active"> <span class="icon"> <i style="padding-top:5px;" class="fa fa-home"></i> </span> <span class="text">Delivered</span> </div>
+                {% else %}
+
+                <div class="stepcancel cancel"> <span class="cancel_icon"></i> </span> <span class="text mt-5" style=" font-weight:600;">Order Cancelled</span></div>
+                {%endif%}
+            </div>
+
+        </div>
+    </article><br>
+    {%endfor%}
+</div>
+<br><br><br><br><br>
+</section>
+
+ <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+
+    <div class="footer-content position-relative">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="footer-info">
+              <h3>J J SPICES</h3>
+              <p>
+
+                <strong>Phone:</strong> 9654678458<br>
+                <strong>Email:</strong> jj@gmail.com<br>
+              </p>
+              <div class="social-links d-flex mt-3">
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div><!-- End footer info column-->
+
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="about">About us</a></li>
+              <li><a href="contact">Contact Us</a></li>
+
+            </ul>
+          </div><!-- End footer links column-->
+
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Product Category</h4>
+            <ul>
+               {% for i in category_list %}
+              <li><a href="category_item?cat_id={{ i.id }}" style="text-transform: capitalize;">{{  i.category_name  }}</a></li>
+
+              {% endfor %}
+
+            </ul>
+          </div><!-- End footer links column-->
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-legal text-center position-relative">
+      <div class="container">
+        <div class="copyright">
+          &copy; Copyright <strong><span>J J SPICES</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+
+          Designed by <a href="https://bootstrapmade.com/">JICKSON JOSE</a>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+  <!-- End Footer -->
+
+<div class="notification">
+   <h5> <a href="contact" style="text-decoration: none;" >
+     <img src="{%static './myapp/media/notification.png' %}"  class="notificationlogo">
+   </a></h5>
+</div>
+
+<div class="whatsapp">
+   <h5> <a href="https://wa.link/kphh1f" style="text-decoration: none;" >
+     <img src="{%static './myapp/media/whatsapp_logo.png' %}"  class="whatsapplogo">
+   </a></h5>
+</div>
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!--  <div id="preloader"></div>-->
+
+  <!-- Vendor JS Files -->
+  <script src="{%static './myapp/template_base/assets/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+  <script src="{%static './myapp/template_base/assets/vendor/aos/aos.js'%}"></script>
+  <script src="{%static './myapp/template_base/assets/vendor/glightbox/js/glightbox.min.js'%}"></script>
+  <script src="{%static './myapp/template_base/assets/vendor/isotope-layout/isotope.pkgd.min.js'%}"></script>
+  <script src="{%static './myapp/template_base/assets/vendor/swiper/swiper-bundle.min.js'%}"></script>
+  <script src="{%static './myapp/template_base/assets/vendor/purecounter/purecounter_vanilla.js'%}"></script>
+  <script src="{%static './myapp/template_base/assets/vendor/php-email-form/validate.js'%}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{%static './myapp/template_base/assets/js/main.js'%}"></script>
+
+  <!--  jquery autocomplete-->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+</body>
+
+</html>

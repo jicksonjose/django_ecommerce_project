@@ -1,0 +1,51 @@
+{%extends 'myapp/user_base.html'%}
+{% load static %}
+{% block body %}
+<section id="services" class="services section-bg">
+		<div class="container">
+		<div class="col-lg-6">
+			<div class="box-element">
+				<br>
+				<hr>
+				<h3>Order Summary</h3>
+				<hr>
+
+				{% for cp in cart.cartproduct_set.all %}
+
+			<div class="service-item  position-relative" style="padding: 9px;">
+              <div class="row"   style=" width: 468px;">
+                <div class="col" style="border-right:1px solid black;">
+                  <img  src="{{cp.item.item_pic.url}}" class="m-2" height="100px" width="100px" >
+                </div>
+                <div class="col">
+                    <h5  style="text-transform: capitalize;">{{cp.item}}</h5><br>
+					<p><strong>Quantity : {{cp.quantity}}</strong></p>
+                    <p style="font-size:15px;font-weight:600;">Rate : {{cp.rate|floatformat:2}}<span style="font-size:10px;">
+                    </span></p>
+                </div>
+
+              </div>
+				<hr>
+            </div>
+				{% endfor %}
+
+			</div>
+			<div class="row">
+				<div class="col">
+					<a  class="btn btn-outline-dark mt-2" href="{% url 'my-cart' %}">&#x2190; Back to Cart</a>
+				</div>
+				<div class="col">
+				<h4><strong>Total:   ${{cart.total}}</strong></h4>
+
+
+		<form method="post" action="checkout_session">
+			{% csrf_token %}
+			<input type="submit" class="btn btn-success" value="Confirm Payment ">
+
+		</form>
+				</div>
+			</div>
+		</div>
+		</div>
+</section>
+{% endblock %}

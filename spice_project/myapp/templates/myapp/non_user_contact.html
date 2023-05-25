@@ -1,0 +1,78 @@
+{%extends 'myapp/base.html'%}
+{% load static %}
+{% block body %}
+<section id="hero" class="hero">
+   <hr>
+<div class="container">
+    <h1>Contact Us</h1>
+    <div class="row">
+        <div class="col-md-6 mt-5 mb-5">
+            <h4>Our Address</h4>
+            <p>Thekkady Road Kumily.Po Kumily <br>
+                Idukki Kerala.
+            </p>
+      <strong>Call Us</strong>
+            <p class="mt-3">7579393299</p>
+            <p class="mt-3">9356753299</p>
+                        <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3933.145422084377!2d77.09586737574817!3d9.668613490420496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b07aca63e957ba1%3A0xe7b133aa40a1eb81!2sResponsible%20Tourism%20Spice%20Shop!5e0!3m2!1sen!2sin!4v1683486047000!5m2!1sen!2sin" width="600" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+        </div>
+        <div class="col-md-6 mt-5 mb-5" style="border-left:1px solid grey;">
+            <h4><strong>Get In Touch</strong></h4>
+            <form method="post">
+                {% csrf_token %}
+            <input type="text" class="form-control" placeholder="Your name" name="u_name" onkeypress="return allowOnlyLetters(event,this);">
+            <input type="email" class="form-control mt-4" placeholder="Your email" name="email">
+            <input type="text" class="form-control mt-4" placeholder="Your phone number" name="phone"
+                   minlength="10" name="phone"
+                 maxlength="10" onkeypress="return isNumberKey(event,this)">
+            <textarea rows="8" cols="68" class="mt-5" placeholder="message" name="message"></textarea>
+            <input type="submit" class="btn btn-primary mt-4 mb-5" value="Send">
+            </form>
+        </div>
+    </div>
+</div>
+</section>
+
+<script type="text/javascript">
+
+        function isNumberKey(evt, obj) {
+
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            var value = obj.value;
+            var dotcontains = value.indexOf(".") != -1;
+            if (dotcontains)
+                if (charCode == 46) return false;
+            if (charCode == 46) return true;
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
+</script>
+<!--only letters-->
+<script language="Javascript" type="text/javascript">
+
+function allowOnlyLetters(e, t)
+{
+   if (window.event)
+   {
+      var charCode = window.event.keyCode;
+   }
+   else if (e)
+   {
+      var charCode = e.which;
+   }
+   else { return true; }
+   if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123))
+       return true;
+   else
+   {
+      alert("Please enter only alphabets");
+      return false;
+   }
+}
+</script>
+
+
+{% endblock %}

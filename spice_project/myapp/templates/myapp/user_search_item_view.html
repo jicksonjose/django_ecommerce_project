@@ -1,0 +1,111 @@
+{%extends 'myapp/user_base.html'%}
+{% load static %}
+{% block body %}
+
+
+<!-- ======= Services Section ======= -->
+
+{%if  items  %}
+<!-- ======= Services Section ======= -->
+<section id="services" class="services section-bg">
+<div class="container" data-aos="fade-up">
+    <div class="row pl-2">
+
+        <!-- image col-->
+          {% for x in items %}
+               <div class=" container col-md-3 mt-5 ml-2">
+                   <img  src="../static/myapp/media/{{ x.item_pic }}" height="300px" width="300px" alt="Card image cap"></a>
+               </div>
+          {% endfor %}
+
+        <!--  price details-->
+          {% for x in items %}
+          <div class="col-md-3 mt-5" data-aos="fade-up" data-aos-delay="100" style="border-right:1px solid black;" >
+
+                <div class="col">
+                    <a style="color:black;" href="user_product_page?id={{ x.id }}&cat_id={{ x.category.id }}">
+                        <h5 class="pt-5" style="font-size:30px;text-transform: capitalize;font-weight:400">{{ x.item_name }}</h5></a>
+                        <p style="font-size:12px;text-transform: uppercase;">Category : {{ x.category }}</p>
+
+                      {% if x.opng_stock == 0 %}
+                        <p style="color:red;font-size:10px;">Out of Stock </p>
+                      {% else %}
+                        <p style="color:green;font-size:10px;">In Stock</p>
+                      {% endif %}
+                    <br>
+                    <s>&#8377; {{ x.item_rate }}</s><p style="font-weight:400;font-size:30px;color:black;">&#8377; {{ x.item_rate }}</p>
+                </div>
+
+              <!--add to cart button-->
+                {% if x.opng_stock > 0  %}
+	            <a href="/addtocart?id={{x.id}}&cat_id={{ x.category.id }}">
+                <!-- <input type="hidden" name="id" value="{{ x.id }}">-->
+				<button data-product="{{i.id}}" data-action="add"   class="btn btn-warning add-btn update-cart">
+                    Add to Cart &nbsp;<i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+				</a>
+                {% else %}
+                   <p style="color:white;font-size:20px;" class="btn btn-danger">Out of Stock...! </p>
+                {% endif %}
+              <!--//////add to cart button-->
+
+          </div>
+             {% endfor %}
+
+          <div class="col-md-6">
+              <p class="pt-3" style="font-weight:600;">Discription</p>
+              <p style=" text-align: justify;"> Cardamom is a spice made from the seed pods of various plants in the ginger family. Cardamom pods are spindle-shaped and have a triangular cross-section. The pods contain a number of seeds, but the entire cardamom pod can be used whole or ground. The seeds are small and black, while the pods differ in color and size by species.</p>
+          </div>
+
+
+    </div>
+    <!--row/-->
+
+    <!--Review div-->
+    <div class="container mt-5">
+        <div class="row">
+<!--            review col-->
+            <div class="col-md-6">
+<!--                <p style="font-weight:600;">Ratings & Reviews</p>-->
+<!--                {% for x in review %}-->
+<!--                 <p>NAME : {{ x.user }}</p>-->
+<!--                <p>mesage : {{ x.review_desp }} </p>-->
+<!--                {% endfor %}-->
+
+                {% for x in items %}
+                <a style="color:#0d6efd;" href="all_review?id={{ x.id }}">See all reviews</a>
+                {% endfor %}
+            </div>
+<!--            review col-->
+
+        </div>
+    </div>
+<!--    container-->
+ </div><!-- End Service Item -->
+
+</section>
+
+    {% else %}
+    <h4 class="text-center mt-5" style="color:grey;">No search results...</h4>
+    {% endif %}
+
+
+</section>
+
+
+
+<style>
+.checked {
+  color: orange;
+}
+
+#review-text{
+
+border-radius:8px;
+border:none;
+padding-top:3px;
+
+}
+</style>
+
+
+{% endblock %}

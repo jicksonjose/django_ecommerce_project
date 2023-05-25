@@ -1,0 +1,69 @@
+{%extends 'myapp/user_base.html'%}
+{% load static %}
+{% block body %}
+
+<!-- ======= ITEMS  ======= -->
+    <section id="services" class="services section-bg">
+
+      <div class="container" data-aos="fade-up">
+
+        <div class="row gy-4">
+
+          {% for x in category_item %}
+
+           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item  position-relative">
+
+              <div class="row">
+                <div class="col">
+
+              <a href="user_product_page?id={{ x.id }}&cat_id={{ x.category.id }}">
+                  <img  src="../static/myapp/media/{{ x.item_pic }}" height="125px" width="125px" alt="Card image cap"></a>
+                </div>
+                <div class="col">
+                    <a style="color:black;v  " href="user_product_page?id={{ x.id }}&cat_id={{ x.category.id }}">
+
+                    <p  style="text-transform: capitalize;font-weight:600;">{{ x.item_name }} <br>
+                    <span style="font-size:10px;">100gm</span></p></a>
+                    <br>
+                    <s style="font-size:12px;">&#8377; {{ x.item_rate }}</s>
+                    <p style="font-weight:600;font-size:16px;">&#8377; {{ x.item_rate }}</p>
+
+                </div>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+          {% endfor %}
+
+
+        </div>
+
+      </div>
+    </section><
+<!-- ITEMS -->
+
+
+
+<style>
+.checked {
+  color: orange;
+  font-size:10px;
+}
+.nonchecked{
+    font-size:10px;
+}
+
+#love
+{
+
+color:none;
+}
+.fa-shopping-cart{
+color:#888;
+}
+.fa-heart-o{
+color:#888;
+}
+</style>
+{% endblock %}
+
