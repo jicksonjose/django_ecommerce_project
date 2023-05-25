@@ -185,22 +185,15 @@ input[list] {
                   <th scope="row">Email</th>
                 </tr>
                <tr>
-                   <td><input class="form-control" type="email" value="{{ x.email}}"
+                   <td><input class="form-control" type="email" value="{{ x.email}}"  id="emailInput" onblur="validateEmail()"
                              required name="email"></td>
                </tr>
               <!--///email-->
 
-
-
-
-
-
-
                 <tr>
-
               </tbody>
             </table>
-                <input type="submit" value="Update" class="btn btn-success">
+                <input type="submit" value="Update" onblur="validateEmail()" class="btn btn-success">
             </div>
         </div>
 </form>
@@ -287,6 +280,23 @@ input[list] {
 </div>
 
 <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+ <script>
+    function validateEmail() {
+      var email = document.getElementById("emailInput").value;
+      var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (regex.test(email)) {
+        // Check if the email contains ".com" and the "@"
+        if (email.indexOf(".com") !== -1 && email.indexOf("@") !== -1) {
+          alert("Email is valid.");
+        } else {
+          alert("Please enter a valid email address containing '.com' and '@'.");
+        }
+      } else {
+        alert("Please enter a valid email address.");
+      }
+    }
+  </script>
 
 
     <!--SCRIPT TAG--->
