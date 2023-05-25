@@ -217,8 +217,8 @@ input[list] {
                 <tr>
                   <th scope="row">Address</th>
                 </tr>
-              <td><input class="form-control" type="text" value="{{ x.address }}"
-                              name="address"></td>
+              <td><input class="form-control" type="text" value=""
+                              name="address" required></td>
               <!--//address-->
 
               <!--state-->
@@ -226,8 +226,8 @@ input[list] {
                   <th scope="row">State</th>
                 </tr>
               <tr>
-                   <td><input class="form-control" type="text" value="{{ x.state }}" onkeypress="return allowOnlyLetters(event,this);"
-                              name="state"></td>
+                   <td><input class="form-control" type="text" value="" onkeypress="return allowOnlyLetters(event,this);"
+                              name="state" required></td>
               </tr>
               <!--//state-->
 
@@ -236,9 +236,9 @@ input[list] {
                   <th scope="row">Pin</th>
                 </tr>
               <tr>
-                       <td><input class="form-control" type="text" value="{{ x.pin }}" maxlength="6" minlength="6"
+                       <td><input class="form-control" type="text" value="" maxlength="6" minlength="6"
                               onkeypress="return isNumberKey(event,this)"
-                              name="pin" id="PinNumber" onblur="validatePin()"></td>
+                              name="pin" id="PinNumber" onblur="validatePin()" required></td>
               </tr>
               <!--//pin-->
 
