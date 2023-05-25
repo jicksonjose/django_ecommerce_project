@@ -291,9 +291,13 @@ input[list] {
           alert("Email is valid.");
         } else {
           alert("Please enter a valid email address containing '.com' and '@'.");
+          emailInput.value = "";
+          return false;
         }
       } else {
         alert("Please enter a valid email address.");
+        emailInput.value = "";
+        return false;
       }
     }
   </script>
