@@ -23,9 +23,9 @@
             <form method="post">
                 {% csrf_token %}
             <input type="text" class="form-control" placeholder="Your name" name="u_name" onkeypress="return allowOnlyLetters(event,this);">
-            <input type="email" class="form-control mt-4" placeholder="Your email" name="email">
+            <input type="email" class="form-control mt-4" placeholder="Your email" name="email" id="emailInput" onblur="validateEmail()">
             <input type="text" class="form-control mt-4" placeholder="Your phone number" name="phone"
-                   minlength="10" name="phone"
+                   minlength="10" name="phone" id="numberInput" onblur="validateNumber()"
                  maxlength="10" onkeypress="return isNumberKey(event,this)">
             <textarea rows="8" cols="68" class="mt-5" placeholder="message" name="message"></textarea>
             <input type="submit" class="btn btn-primary mt-4 mb-5" value="Send">
@@ -34,7 +34,40 @@
     </div>
 </div>
 </section>
+<script>
+    function validateEmail() {
+      var email = document.getElementById("emailInput").value;
+      var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+      if (regex.test(email)) {
+        // Check if the email contains ".com" and the "@"
+        if (email.indexOf(".com") !== -1 && email.indexOf("@") !== -1) {
+          alert("Email is valid.");
+        } else {
+          alert("Please enter a valid email address containing '.com' and '@'.");
+          emailInput.value = "";
+          return false;
+        }
+      } else {
+        alert("Please enter a valid email address.");
+        emailInput.value = "";
+        return false;
+      }
+    }
+  </script>
+<script>
+    function validateNumber() {
+      var numberInput = document.getElementById("numberInput");
+      var value = numberInput.value;
+
+      if (value === "0000000000" || value === "1111111111" || value === "2222222222" || value === "3333333333" || value === "4444444444" || value === "5555555555" || value === "6666666666" || value === "7777777777" || value ==="8888888888" || value ==="9999999999")
+      {
+        alert("Please enter a valid phone number");
+        numberInput.value = "";
+        return false;
+      }
+    }
+  </script>
 <script type="text/javascript">
 
         function isNumberKey(evt, obj) {
