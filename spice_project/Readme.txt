@@ -4,3 +4,9 @@ pip3 install --upgrade stripe
 pip install django-authentication
 pip install Pillow
 pip install django-allauth
+
+
+##########################################
+Admin Panel :-
+username - admin
+password - 123
